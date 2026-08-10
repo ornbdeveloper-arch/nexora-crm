@@ -1,0 +1,546 @@
+/* =========================================================
+   1. RESET GLOBAL
+   Controla o comportamento inicial de todos os elementos.
+   ========================================================= */
+
+* {
+    /* Faz padding e border entrarem no cálculo do tamanho. */
+    box-sizing: border-box;
+
+    /* Remove margens e espaçamentos padrão do navegador. */
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================================================
+   2. VARIÁVEIS GLOBAIS
+   Guarda cores, medidas e valores reutilizáveis do Nexora.
+   ========================================================= */
+
+:root {
+    /* Cores principais da identidade visual. */
+    --color-primary: #4f46e5;
+    --color-primary-dark: #3730a3;
+
+    /* Cores dos fundos. */
+    --color-background: #eaedf1;
+    --color-surface: #111827;
+
+    /* Cores dos textos. */
+    --color-text: #1f2937;
+    --color-text-light: #6b7280;
+
+    /* Cor utilizada nas bordas. */
+    --color-border: #e5e7eb;
+
+    /* Largura do menu lateral. */
+    --sidebar-width: 240px;
+}
+
+
+/* =========================================================
+   3. ESTRUTURA GERAL DA PÁGINA
+   Controla a posição do menu, cabeçalho, conteúdo e rodapé.
+   ========================================================= */
+
+body {
+    /* Garante que a página ocupe pelo menos toda a tela. */
+    min-height: 100vh;
+
+    /* Configurações gerais dos textos da página. */
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--color-text);
+
+    /* Cor de fundo geral da aplicação. */
+    background-color: var(--color-background);
+
+    /* Transforma o body em uma grade. */
+    display: grid;
+
+    /*
+        Primeira coluna: menu lateral.
+        Segunda coluna: restante da tela.
+    */
+    grid-template-columns:
+         var(--sidebar-width)
+         minmax(0, 1fr);
+
+    /*
+        Primeira linha: cabeçalho.
+        Segunda linha: conteúdo principal.
+        Terceira linha: rodapé.
+    */
+    grid-template-rows: auto 1fr auto;
+
+    /*
+        Desenha a posição das regiões da página.
+
+        ┌─────────┬────────┐
+        │ sidebar │ header │
+        ├─────────┼────────┤
+        │ sidebar │ main   │
+        ├─────────┼────────┤
+        │ sidebar │ footer │
+        └─────────┴────────┘
+    */
+    grid-template-areas:
+        "sidebar header"
+        "sidebar main"
+        "sidebar footer";
+
+    transition: grid-template-columns 0.25s ease;
+}
+body.sidebar-collapsed {
+    grid-template-columns: 0 minmax(0, 1fr);
+}
+
+body.sidebar-collapsed aside {
+    padding-left: 0;
+    padding-right: 0;
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* =========================================================
+   4. MENU LATERAL — ASIDE
+   Controla toda a coluna esquerda da tela.
+   ========================================================= */
+
+aside {
+    /* Coloca o aside na região "sidebar" da grade. */
+    grid-area: sidebar;
+
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+
+    /* Espaço entre o conteúdo e as bordas do menu. */
+    padding: 24px;
+
+    /* Cor padrão dos textos dentro do menu lateral. */
+    color: white;
+
+    /* Fundo escuro da barra lateral. */
+    background-color: #111827;
+
+    transition: 
+        padding 0.25s ease,
+        opacity 0.25s ease;
+}
+
+
+/* =========================================================
+   5. IDENTIDADE DO NEXORA NO MENU
+   Controla o nome "Nexora" exibido acima da navegação.
+   ========================================================= */
+
+aside > div {
+    /* Distância entre o nome Nexora e os links do menu. */
+    margin-bottom: 32px;
+}
+
+aside strong {
+    /* Tamanho do nome Nexora. */
+    font-size: 24px;
+}
+
+#sidebar-toggle {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: #7b94af;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#sidebar-toogle:hover {
+    background-color: var(--color-primary-dark);
+}
+
+/* =========================================================
+   6. NAVEGAÇÃO LATERAL
+   Controla a lista e os links do menu.
+   ========================================================= */
+
+nav ul {
+    /* Remove as bolinhas da lista. */
+    list-style: none;
+}
+
+nav li {
+    /* Cria espaço vertical entre os itens do menu. */
+    margin-bottom: 8px;
+}
+
+nav a {
+    /*
+        Faz o link ocupar toda a largura disponível
+        dentro do menu.
+    */
+    display: block;
+
+    /* Espaçamento interno de cada item. */
+    padding: 5px 10px;
+
+    /* Usa a cor herdada do aside. */
+    color: inherit;
+
+    /* Remove o sublinhado padrão dos links. */
+    text-decoration: none;
+
+    /* Fundo padrão dos itens do menu. */
+    background-color: #7b94af;
+
+    /* Arredonda os cantos. */
+    border-radius: 5px;
+
+    /* Destaca o texto do link. */
+    font-weight: bold;
+
+    /* Suaviza a troca da cor do fundo. */
+    transition:
+        background-color 0.2s,
+        color 0.2s;
+}
+
+/* Controla o link quando o mouse passa por cima. */
+nav a:hover {
+    background-color: #1f2937;
+    color: #e5e7eb;
+}
+
+/* Controla o link correspondente à página atualmente aberta. */
+/* nav a[aria-current="page"] {
+    background-color: var(--color-background);
+    color: #000000;
+} */
+
+
+/* =========================================================
+   7. CABEÇALHO SUPERIOR — HEADER
+   Controla a região onde aparecem o título e o perfil.
+   Por enquanto, define apenas sua posição na grade.
+   ========================================================= */
+
+header {
+    /* Coloca o header na região "header" da grade. */
+    grid-area: header;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #111827;
+    padding: 16px 32px;
+    color: white;
+}
+header > div > button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background-color: #7b94af;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 
+        background-color 0.2s,
+        color 0.2s;
+}
+
+header > div > button:hover {
+    background-color: #3730a3;
+    color: black;
+}
+
+header > div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-left,
+.header-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+    background-color: #7b94af;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 
+        background-color 0.2s,
+        color 0.2s;
+}
+
+.header-profile > button:hover {
+    background-color: var(--color-primary-dark);
+}
+
+
+/* =========================================================
+   8. CONTEÚDO PRINCIPAL — MAIN
+   Controla toda a área central do dashboard.
+   ========================================================= */
+
+main {
+    /* Coloca o main na região "main" da grade. */
+    grid-area: main;
+
+    /* Distância entre o conteúdo e as bordas da região. */
+    padding: 32px;
+}
+
+
+/* =========================================================
+   9. SEÇÕES DO CONTEÚDO PRINCIPAL
+   Controla Resumo Geral, Atividades e Próximas Tarefas.
+   ========================================================= */
+
+main section {
+    /* Cria espaço entre uma seção e a seguinte. */
+    margin-bottom: 32px;
+}
+
+main section > h2 {
+    /* Distância entre o título e o conteúdo da seção. */
+    margin-bottom: 16px;
+
+    /* Tamanho dos títulos das seções. */
+    font-size: 20px;
+}
+
+
+/* =========================================================
+   10. CONJUNTO DOS CARDS DE RESUMO
+   Controla a disposição dos quatro cards.
+   ========================================================= */
+
+.summary-cards {
+    /* Transforma o conjunto dos cards em uma grade. */
+    display: grid;
+
+    /*
+        Cria automaticamente quantas colunas couberem.
+
+        Cada card:
+        - terá no mínimo 180px;
+        - poderá crescer para ocupar o espaço disponível.
+    */
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(180px, 1fr)
+    );
+
+    /* Espaço entre os cards. */
+    gap: 16px;
+}
+
+
+/* =========================================================
+   11. CARD INDIVIDUAL DO RESUMO
+   Controla cada card: Clientes, Empresas, Oportunidades etc.
+   ========================================================= */
+
+.summary-card {
+    /* Espaço interno do card. */
+    padding: 20px;
+
+    /* Fundo do card. */
+    background-color: var(--color-surface);
+
+    /* Borda ao redor do card. */
+    border: 1px solid var(--color-border);
+
+    /* Cantos arredondados. */
+    border-radius: 10px;
+}
+
+
+/* =========================================================
+   12. TÍTULO DO CARD
+   Controla textos como "Clientes" e "Empresas".
+   ========================================================= */
+
+.summary-card h3 {
+    /* Espaço entre o título e o número. */
+    margin-bottom: 12px;
+
+    /* Cor secundária para o título. */
+    color: var(--color-text-light);
+
+    /* Tamanho do título. */
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   13. VALOR DO CARD
+   Controla os números dos indicadores.
+   ========================================================= */
+
+.summary-card p {
+    /* Espaço entre o número e o link. */
+    margin-bottom: 16px;
+
+    /* Deixa o número maior. */
+    font-size: 32px;
+
+    /* Deixa o número em negrito. */
+    font-weight: bold;
+    color: var(--color-text-light);
+}
+
+
+/* =========================================================
+   14. LINKS DOS CARDS
+   Controla links como "Ver clientes" e "Ver empresas".
+   ========================================================= */
+
+.summary-card a {
+
+    display: block;
+
+    padding: 5px 10px;
+
+    color: white;
+
+    text-decoration: none;
+
+    background-color: #7b94af;
+
+    border-radius: 5px;
+
+    font-weight: bold;
+
+    transition:
+        background-color 0.2s,
+        color 0.2s;
+}
+
+/* Sublinha o link quando o mouse passa por cima. */
+.summary-card a:hover {
+    text-decoration: underline;
+    background-color: var(--color-background);
+    color: #000000;
+}
+
+
+
+/* =========================================================
+   15. RODAPÉ — FOOTER
+   Controla a região inferior da página.
+   Por enquanto, define apenas sua posição na grade.
+   ========================================================= */
+
+footer {
+    /* Coloca o footer na região "footer" da grade. */
+    grid-area: footer;
+}
+
+.table-conteiner {
+    overflow-x: auto;
+}
+
+.clients-section {
+    padding: 24px;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    color: white;
+}
+
+.clients-header {
+    padding: 24px;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    color: white;
+}
+
+.client-tools {
+    padding: 24px;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    color: white;
+}
+
+.client-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.client-list-header h2 {
+    margin: 6px;
+    font-size: 20px;
+    color: white;
+}
+
+.client-list-header p {
+    color: #9ca3af;
+    font-size: 14px;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+}
+
+.clients-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background-color: white;
+    color: var(--color-text);
+}
+
+.clients-table thead {
+    background-color: #111827;
+    color: white;
+}
+
+clients-table th {
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+.clients-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.clients-table tbody tr:last-child td {
+    border-bottom: none;
+} 
+
+.clients-table tbody tr:nth-child(even) {
+    background-color: #6282a1;
+    color: white;
+}
+
+.teste {
+     padding: 24px;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    color: white;
+}
+
+
+

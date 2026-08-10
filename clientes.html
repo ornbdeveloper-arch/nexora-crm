@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<!-- Informa a engine que a linguagem principal da página é Português do Brasil -->
+<html lang="pt-BR">
+<!-- Tag de configuração da página, não contem o conteúo literal da página e sim suas configurações. -->
+
+<head>
+    <!-- Informa o método de caracteres, UTF-8 permite usar acentos, entre outros tipos. -->
+    <meta charset="UTF-8">
+    <!-- Faz a página sempre respeitar a resolução do dispositivo, independente do tamanho da tela. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Informa títutlo da pagina, exibido na aba do navegador. -->
+    <title>Nexora | Clientes</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<!-- Tag de conteúdo, tudo que pertence e é exibido na página fica aqui dentro. -->
+
+<body>
+    <!-- Cabeçalho superior. -->
+    <header>
+
+        <div class="header-left">
+            <button id="sidebar-toggle" type="button" aria-controls="sidebar" aria-expanded="true"
+                aria-label="Recolher menu">☰</button>
+        </div>
+
+        <h1>Clientes</h1>
+
+        <div>
+            <span>Bruno Carvalho</span>
+            <button type="button">Abrir Perfil</button>
+        </div>
+
+    </header>
+    <!-- Menu lateral. -->
+    <aside id="sidebar">
+
+        <div class="titulo-sidebar">
+            <strong>Nexora</strong>
+        </div>
+
+        <nav aria-label="Navegação principal">
+            <ul>
+                <li>
+                    <a href="index.html" aria-current="page">Dashboard</a>
+                </li>
+
+                <li>
+                    <a href="clientes.html">Clientes</a>
+                </li>
+
+                <li>
+                    <a href="empresas.html">Empresas</a>
+                </li>
+
+                <li>
+                    <a href="oportunidades.html">Oportunidades</a>
+                </li>
+
+                <li>
+                    <a href="configuracoes.html">Configurações</a>
+                </li>
+                <li>
+                    <a href="tarefas.html">Tarefas</a>
+                </li>
+            </ul>
+        </nav>
+
+    </aside>
+    <!-- Conteúdo principal. -->
+    <main>
+
+        <!-- Apreswntação e ação principal da página -->
+        <section class="clients-header" aria-labelledby="titutlo-gerenciamento-clientes">
+            <div>
+                <h2 id="titutlo-gerenciamento-clientes">Gerenciamento de clientes</h2>
+                <p>
+                    Cadastre, pesquise e acompanhe os contatos registrados no Nexora
+                </p>
+            </div>
+
+            <button id="new-client-button" type="button">Novo cliente</button>
+
+        </section>
+
+        <section class="client-tools" aria-labelledby="titulo-filtro-clientes">
+            <h2 id="titulo-filtro-clientes">Pesquisar clientes</h2>
+            <form id="client-search-form" role="search">
+                <div class="form-field">
+                    <label for="client-search">
+                        Nome, empresa, e-mail
+                    </label>
+                    <input id="client-search" name="search" type="text" placeholder="Digite para pesquisar">
+                </div>
+
+                <div class="form-field">
+                    <label for="client-status-filter">
+                        Status
+                    </label>
+
+                    <select name="status" id="client-status-filter">
+                        <option value="">Todos</option>
+                        <option value="ativo">Ativo</option>
+                        <option value="inativo">Inativo</option>
+                        <option value="lead">Lead</option>
+                    </select>
+                </div>
+
+                <button type="submit">
+                    Pesquisar
+                </button>
+            </form>
+
+            <button id="clear-status-button" type="button">
+                Limpar filtros
+            </button>
+        </section>
+
+        <!-- Listar clientes cadastrados -->
+        <section class="clients-section" aria-labelledby="titulo-lista-clientes">
+            <div class="client-list-header">
+                <div>
+                    <h2 id="titulo-lista-clientes">
+                        Clientes cadastrados
+                    </h2>
+
+                    <p>
+                        <span id="clients-count">
+                            2
+                        </span>
+                        Clientes encontrados
+                    </p>
+                </div>
+            </div>
+
+            <div class="table-conteiner">
+                <table class="clients-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Empresa</th>
+                            <th scope="col">E-mail</th>
+                            <th scope="col">Telefone</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Último contato</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="clients-tablebody">
+                        <tr>
+                            <td>Sabrina Soraya</td>
+                            <td>Mountain Tech</td>
+                            <td>sabrina@mountaintech.com</td>
+                            <td>(84) 99999-9999</td>
+                            <td>Ativo</td>
+                            <td>
+                                <time datetime="2026-08-05">
+                                    5 de agosto de 2026
+                                </time>
+                            </td>
+                            <td>
+                                <a href="clientes.html?id=1">
+                                    Visualizar
+                                </a>
+                                <button type="button" data-client-id="1">
+                                    Editar
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>José Silva</td>
+                            <td>Natal Serviços</td>
+                            <td>jose@natalservicos.com</td>
+                            <td>(84) 98888-8888</td>
+                            <td>Lead</td>
+
+                            <td>
+                                <time datetime="2026-08-03">
+                                    3 de agosto de 2026
+                                </time>
+                            </td>
+
+                            <td>
+                                <a href="cliente.html?id=2">
+                                    Visualizar
+                                </a>
+
+                                <button type="button" data-client-id="2">
+                                    Editar
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+
+
+    </main>
+    <!-- Rodapé. -->
+    <footer>
+
+        <p>Nexora v0.1.0</p>
+
+    </footer>
+
+    <script src="js/app.js" defer></script>
+
+</body>
+
+</html>

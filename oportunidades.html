@@ -1,7 +1,8 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <!-- Informa a engine que a linguagem principal da página é Português do Brasil -->
-<html lang="pt-BR"> 
+<html lang="pt-BR">
 <!-- Tag de configuração da página, não contem o conteúo literal da página e sim suas configurações. -->
+
 <head>
     <!-- Informa o método de caracteres, UTF-8 permite usar acentos, entre outros tipos. -->
     <meta charset="UTF-8">
@@ -12,18 +13,14 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <!-- Tag de conteúdo, tudo que pertence e é exibido na página fica aqui dentro. -->
+
 <body>
     <!-- Cabeçalho superior. -->
     <header>
 
         <div class="header-left">
-            <button
-                id="sidebar-toggle"
-                type="button"
-                aria-controls="sidebar"
-                aria-expanded="true"
-                aria-label="Recolher menu"
-            >☰</button>
+            <button id="sidebar-toggle" type="button" aria-controls="sidebar" aria-expanded="true"
+                aria-label="Recolher menu">☰</button>
         </div>
 
         <h1>Painel Principal</h1>
@@ -72,10 +69,124 @@
     <!-- Conteúdo principal. -->
     <main>
 
-        <section class="wip">
-            <h1>Em desenvolvimento...</h1>
+            <section class="pipeline-top">
+                <div class="pipeline-titulo">
+                    <h2>Pipeline de Oportunidades</h2>
+                    <p>
+                        Acompanhe a evolução de negócios, valores em negociação e probabilidade de fechamento
+                    </p>
+                </div>
+                <button type="button">+Nova Oportunindade</button>
+            </section>
+        <section class="resumo-pipeline">
+            <section class="valor-total">
+                <p>
+                    Valor Total em Pipeline
+                </p>
+                <h2>R$ 63.000,00</h2>
+            </section>
+        
+
+            <section class="oportunidades">
+                <p>Oportunidades Ativas</p>
+                <h2>2</h2>
+            </section>
         </section>
 
+        <section class="pipeline">
+            <div class="pipeline-coluna">
+                <div class="coluna-header">
+                    <h2>PROSPECÇÃO</h2>
+                    <span>1</span>
+                </div>
+                <p class="total">
+                    Total: R$ 18.000,00
+                </p>
+                <div class="negocio-card">
+                    <h3>Consultoria em Automação de Vendas</h3>
+                    <p>🏢 Natal Serviço</p>
+                    <p>👤 José Silva</p>
+                    <strong>R$ 18.000,00</strong>
+
+                    <div class="acoes">
+                        <div class="acoes-top">
+                            <p>Prob: 75%</p>
+                            <select name="status">
+                                <button type="button">Remover</button>
+                                <option value="prospeccao">Prospecção</option>
+                                <option value="proposta" selected>Proposta</option>
+                                <option value="negociacao">Negociação</option>
+                                <option value="ganho">Fechado / Ganho</option>
+                                <option value="perdido">Perdido</option>
+                            </select>
+                        </div>
+                        <button type="button">Remover</button>
+                    </div>
+                </div>
+            </div>
+            <div class="pipeline-coluna">
+                <div class="coluna-header">
+                    <h2>PROPOSTA</h2>
+                    <span>1</span>
+                </div>
+                <p class="total">
+                    Total: R$ 45.000,00
+                </p>
+                <div class="negocio-card">
+                    <h3>Implementação Nexora CRM Enterprise</h3>
+                    <p>🏢 Mountain Tech</p>
+                    <p>👤 Sabrina Soraya</p>
+
+                    <strong>R$ 45.000,00</strong>
+
+                    <div class="acoes">
+                        <div class="acoes-top">
+                            <p>Prob: 75%</p>
+                            <select name="status">
+                                <button type="button">Remover</button>
+                                <option value="prospeccao">Prospecção</option>
+                                <option value="proposta" selected>Proposta</option>
+                                <option value="negociacao">Negociação</option>
+                                <option value="ganho">Fechado / Ganho</option>
+                                <option value="perdido">Perdido</option>
+                            </select>
+                        </div>
+                        <button type="button">Remover</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pipeline-coluna">
+                <div class="coluna-header">
+                    <h2>NEGOCIAÇÃO</h2>
+                    <span>0</span>
+                </div>
+                <p class="total">
+                    Total: R$ 0,00
+                </p>
+            </div>
+
+            <div class="pipeline-coluna">
+                <div class="coluna-header">
+                    <h2>FECHADO / GANHO</h2>
+                    <span>0</span>
+                </div>
+                <p class="total">
+                    Total: R$ 0,00
+                </p>
+            </div>
+
+            <div class="pipeline-coluna">
+                <div class="coluna-header">
+                    <h2>PERDIDO</h2>
+                    <span>0</span>
+                </div>
+                <p class="total">
+                    Total: R$ 0,00
+                </p>
+            </div>
+
+        </section>
     </main>
     <!-- Rodapé. -->
     <footer>
@@ -87,4 +198,5 @@
     <script src="js/app.js" defer></script>
 
 </body>
+
 </html>

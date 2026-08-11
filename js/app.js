@@ -15,4 +15,6 @@ sidebarToggle.addEventListener("click", function () {
             ? "Expandir menu"
             : "Recolher menu"
     );
+
+    localStorage.setItem('SidebarCollapsed', true);
 });

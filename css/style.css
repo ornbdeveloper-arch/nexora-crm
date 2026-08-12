@@ -464,6 +464,12 @@ footer {
     color: white;
 }
 
+/* =========================================================
+   16. MODULO DE CLIENTES
+   Organiza cabecalho, filtros e tabela da pagina de clientes.
+   ========================================================= */
+
+/* Permite rolagem horizontal quando a tabela nao cabe na tela. */
 .table-conteiner {
     overflow-x: auto;
 }
@@ -558,6 +564,11 @@ footer {
     color: white;
 }
 
+/* =========================================================
+   17. PAINEIS DO DASHBOARD E ESTADOS TEMPORARIOS
+   Agrupa atividades/tarefas e sinaliza modulos em construcao.
+   ========================================================= */
+
 .teste {
      padding: 24px;
     background-color: var(--color-surface);
@@ -574,6 +585,11 @@ footer {
     color: white;
     box-shadow: #000000 12px 12px 12px 10px, #000000 0px 2px 4px -1px;
 }
+
+/* =========================================================
+   18. PIPELINE DE OPORTUNIDADES
+   Monta o Kanban comercial, suas colunas e cards de negocio.
+   ========================================================= */
 
 .pipeline {
     display: grid;
@@ -635,6 +651,7 @@ footer {
     color: #10b981;
 }
 
+/* Contador circular no cabecalho de cada etapa do pipeline. */
 .coluna-header span {
     display: grid;
     place-items: center;
@@ -646,6 +663,7 @@ footer {
     font-size: 12px;
     font-weight: bold;
 }
+/* Area para mudar o status ou remover uma oportunidade. */
 .acoes {
     margin-top: 12px;
     border-top: 1px solid #253047;
@@ -681,6 +699,7 @@ footer {
     cursor: pointer;
 }
 
+/* Cabecalho introdutorio e botao de criacao do pipeline. */
 .pipeline-top {
     background-color: #111827;
     border-radius: 10px;
@@ -735,6 +754,7 @@ footer {
     gap: 16px;
 }
 
+/* Cards que consolidam os totais exibidos acima do Kanban. */
 .valor-total {
     background-color: #111827;
     border-radius: 10px;
@@ -751,6 +771,11 @@ footer {
 .oportunidades {
     padding: 14px 16px;
 }
+
+/* =========================================================
+   19. LISTAS DE ATIVIDADES E TAREFAS DO DASHBOARD
+   Aplica o visual dos itens apresentados na pagina inicial.
+   ========================================================= */
 
 .task-item {
     background-color: var(--color-text);
